@@ -4,6 +4,7 @@ import {config} from '../config';
 
 import UserDao, {IUserModel} from '../daos/UserDao';
 import {IUser} from '../models/User';
+import { UnableToSaveUserError , InvalidUsernameOrPasswordError} from '../utils/libraryErrors';
 
 export async function register(user:IUser):Promise<IUserModel>{
     const ROUNDS = config.server.rounds;
@@ -16,7 +17,33 @@ export async function register(user:IUser):Promise<IUserModel>{
 
 
     }catch(error:any){
-        throw new Error("Unable to create user this time");
+        throw new UnableToSaveUserError(error.message);
 
+    }
+}
+
+export async function login(credentials:{email:string, password:string}):Promise<IUserModel>{
+    const {email,password} = credentials;
+
+    try {
+
+        const user = await UserDao.findOne({email});
+
+        if(!user){
+            throw new InvalidUsernameOrPasswordError("Invalid username or password");
+        }else {
+            const validatePassword: boolean = await bcrypt.compare(password, user.password);
+
+            if(validatePassword){
+                return user;
+            }else{
+                throw new InvalidUsernameOrPasswordError("Invalid username or password");
+            }
+        }
+        
+    } catch (error:any) {
+
+        throw error;
+        
     }
 }

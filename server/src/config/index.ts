@@ -4,7 +4,7 @@ dotenv.config();
 
 const MONGO_USERNAME: string = process.env.MONGO_USERNAME || '';
 const MONGO_PASSWORD: string = process.env.MONGO_PASSWORD || '';
-const MONGO_URL: string = `mongodb+srv://${MONGO_USERNAME}:${MONGO_PASSWORD}@cluster0.154omtt.mongodb.net/librarydb?retryWrites=true&w=majority&appName=Cluster0`;
+const MONGO_URL: string = `mongodb+srv://${MONGO_USERNAME}:${MONGO_PASSWORD}@cluster0.154omtt.mongodb.net/librarydb?retryWrites=true&w=majority`;
 
 
 const PORT: number = process.env.SERVER_PORT ? Number(process.env.SERVER_PORT) : 8000;
