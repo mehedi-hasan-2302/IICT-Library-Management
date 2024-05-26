@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.InvalidUsernameOrPasswordError = exports.UnableToSaveUserError = void 0;
+exports.UserDoesNotExistError = exports.InvalidUsernameOrPasswordError = exports.UnableToSaveUserError = void 0;
 class UnableToSaveUserError extends Error {
     constructor(message) {
         super(message);
@@ -13,3 +13,9 @@ class InvalidUsernameOrPasswordError extends Error {
     }
 }
 exports.InvalidUsernameOrPasswordError = InvalidUsernameOrPasswordError;
+class UserDoesNotExistError extends Error {
+    constructor(message) {
+        super(message);
+    }
+}
+exports.UserDoesNotExistError = UserDoesNotExistError;
