@@ -1,17 +1,14 @@
-import { useState ,useEffect} from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-import HomePage from './pages/HomePage/HomePage'
-import { User } from './models/User'
+import { useState ,useEffect} from 'react';
+import reactLogo from './assets/react.svg';
+import viteLogo from '/vite.svg';
+import { UseSelector, useSelector } from 'react-redux';
+import { RootState } from './redux/ReduxStore';
+import HomePage from './pages/HomePage/HomePage';
+
 
 function App() {
-  const [displayLogin, setDisplayLogin] = useState<boolean>(true);
-  const [loggedInUser, setLoggedInUser] = useState<User>();
-  const updateLoggedInUser = (user:User) => {
-    setLoggedInUser(user);
-  }
-
+  
+  const loggedInUser = useSelector((state: RootState) => state.authentication.loggedInUser);
 
   useEffect(()=>{
     console.log(loggedInUser);
@@ -21,7 +18,7 @@ function App() {
   }, [loggedInUser])
   return (
     <div>
-    <HomePage displayLogin={displayLogin} updateLoggedInUser={updateLoggedInUser}/>
+    <HomePage/>
   </div>
   )
 }

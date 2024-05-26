@@ -1,39 +1,31 @@
 import React,{useRef, useState} from "react";
 import './LoginFrom.css';
-import axios from "axios";
+import { UseDispatch, useDispatch, useSelector } from "react-redux";
+import { AppDispatch,RootState } from "../../../../redux/ReduxStore"; 
+import { loginUser } from "../../../../redux/slices/AuthententicationSlice";
 import { User } from "../../../../models/User";
 
-interface LoginFromProps{
-    updateLoggedInUser(user:User): void
-}
 
-export const LoginFrom:React.FC<LoginFromProps> = ({updateLoggedInUser})=> {
+export const LoginFrom:React.FC = ()=> {
 
-    const [error, setError] = useState<boolean>(false);
     const emailRef = useRef<HTMLInputElement>(null);
     const passwordRef = useRef<HTMLInputElement>(null);
+    const auth = useSelector((state: RootState) => state.authentication);
+    const dispatch:AppDispatch = useDispatch();
     const handleLoginUser = async (e:React.MouseEvent<HTMLButtonElement>) =>{
         e.preventDefault();
         if(emailRef && emailRef.current && passwordRef && passwordRef.current){
-            try{
-                const req = await axios.post('http://localhost:8000/auth/login',{
-                    email: emailRef.current.value,
-                    password: passwordRef.current.value
-                });
-
-                setError(false);
-                updateLoggedInUser(req.data.user);
-            }catch(e){
-                setError(true);
-            }
-
+            dispatch(loginUser({
+                email: emailRef.current.value,
+                password: passwordRef.current.value
+            }));
         }
     }
 
 
     return <form className = "login-form">
         <h2>please login</h2>
-        {error ? <p className="login-form-error">invalid email or password</p> : <> </>}
+        {auth.error ? <p className="login-form-error">invalid email or password</p> : <> </>}
         <div className="login-form-input-group"> 
         <h6>Email</h6>
         <input className="login-form-input" placeholder="email" name="email" required ref={emailRef}/>
