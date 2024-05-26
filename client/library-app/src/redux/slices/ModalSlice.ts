@@ -1,4 +1,4 @@
-import {createSlice, createdSlice , payloadAction} from '@reduxjs/toolkit';
+import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 
 
 interface ModalSliceSate {
@@ -10,22 +10,30 @@ interface ModalSliceSate {
 const initialState: ModalSliceSate = {
     displayLogin: true,
     displayLibraryCard: false,
-    displayLoan: false;
+    displayLoan: false
 }
 
 export const ModalSlice = createSlice({
     name: 'modal',
     initialState,
     reducers: {
-        setDisplayLogin(state, action: payloadAction<boolean>){
+        setDisplayLogin(state, action: PayloadAction<boolean>){
             state = {
                 ...state ,
-                displayLogin: action.payloada
+                displayLogin: action.payload
             }
             return state;
         },
 
-        setDisplayLoan(state, action: payloadAction<boolean>){
+        setDisplayLibraryCard(state, action: PayloadAction<boolean>){
+            state = {
+                ...state ,
+                displayLibraryCard: action.payload
+            }
+            return state;
+        },
+
+        setDisplayLoan(state, action: PayloadAction<boolean>){
             state = {
                 ...state,
                 displayLoan: action.payload
@@ -37,4 +45,4 @@ export const ModalSlice = createSlice({
 
 export const {setDisplayLogin, setDisplayLibraryCard, setDisplayLoan} = ModalSlice.actions;
 
-export defaulta ModalSlice.reducer;
+export default ModalSlice.reducer;
