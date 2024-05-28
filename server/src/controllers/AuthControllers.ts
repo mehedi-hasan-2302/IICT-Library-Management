@@ -4,7 +4,7 @@ import { IUser } from '../models/User';
 import { IUserModel } from '../daos/UserDao';
 import { InvalidUsernameOrPasswordError } from '../utils/libraryErrors';
 
- const handleRegister = async (req:Request, res:Response) =>{
+const handleRegister = async (req:Request, res:Response) =>{
 
     const user:IUser = req.body;
 
@@ -26,18 +26,22 @@ import { InvalidUsernameOrPasswordError } from '../utils/libraryErrors';
         })
 
     }catch(error:any){
+
         if(error.message.includes("E11000 duplicate key error collection:")){
+
             res.status(409).json({message: "User with this email already exists", error:error.message});
+   
         }else{
+
             res.status(500).json({message:"Unable to register user at this time", error:error.message});
         }
         
     }
-
 }
 
 
-async function  handleLogin(req:Request, res:Response){
+const handleLogin = async (req:Request, res:Response)=> {
+
      const credentials = req.body;
 
      try {
@@ -57,7 +61,9 @@ async function  handleLogin(req:Request, res:Response){
      } catch (error:any) {
 
         if(error instanceof InvalidUsernameOrPasswordError ){
+
             res.status(401).json({message:"Unable to login user at this time", error:error.message});
+
         }else{
 
             res.status(500).json({message:"Unable to login user at this time!", error:error.message});
