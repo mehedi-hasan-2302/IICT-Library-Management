@@ -3,6 +3,8 @@ import Joi, {ObjectSchema } from 'joi';
 import { NextFunction, Response, Request } from 'express';
 import { IUser } from '../models/User';
 import { IUserModel } from '../daos/UserDao';
+import { IBook } from '../models/Book';
+import { IBookModel } from '../daos/BookDao';
 
 export function ValidateSchema(schema: ObjectSchema, property:string){
     return async (req:Request, res:Response, next:NextFunction) =>{
@@ -51,6 +53,40 @@ export const Schemas = {
             lastName: Joi.string().required(),
             email: Joi.string().regex(/[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+/).required(),
             password: Joi.string()
+        })
+        
+    },
+
+    book: {
+        create: Joi.object<IBook>({
+            barcode: Joi.string().regex(/^(?=(?:\D*\d){10}(?:(?:\D*\d){3})?$)[\d-]+$/).required(),
+            cover: Joi.string().required(),
+            title: Joi.string().required(),
+            author: Joi.array().required(),
+            description: Joi.string().required(),
+            subjects: Joi.array().required(),
+            publicationDate: Joi.date().required(),
+            publisher: Joi.string().required(),
+            pages: Joi.number().required(),
+            genre: Joi.string().required()
+
+        }),
+        update: Joi.object<IBookModel>({
+            _id: Joi.string().regex(/^[0-9a-fA-F]{24}$/),
+            barcode: Joi.string().regex(/^(?=(?:\D*\d){10}(?:(?:\D*\d){3})?$)[\d-]+$/).required(),
+            cover: Joi.string().required(),
+            title: Joi.string().required(),
+            author: Joi.array().required(),
+            description: Joi.string().required(),
+            subjects: Joi.array().required(),
+            publicationDate: Joi.date().required(),
+            publisher: Joi.string().required(),
+            pages: Joi.number().required(),
+            genre: Joi.string().required()
+            
+        }),
+        delete: Joi.object<{barcode:string}> ({
+            barcode: Joi.string().regex(/^(?=(?:\D*\d){10}(?:(?:\D*\d){3})?$)[\d-]+$/).required()
         })
     }
 }
