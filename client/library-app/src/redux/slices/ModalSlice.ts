@@ -8,7 +8,7 @@ interface ModalSliceSate {
 }
 
 const initialState: ModalSliceSate = {
-    displayLogin: true,
+    displayLogin: false,
     displayLibraryCard: false,
     displayLoan: false
 }

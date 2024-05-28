@@ -4,6 +4,8 @@ import viteLogo from '/vite.svg';
 import { UseSelector, useSelector } from 'react-redux';
 import { RootState } from './redux/ReduxStore';
 import HomePage from './pages/HomePage/HomePage';
+import { BrowserRouter,Route, Routes } from 'react-router-dom';
+import LayoutPage from './pages/LayoutPage/LayoutPage';
 
 
 function App() {
@@ -17,9 +19,16 @@ function App() {
     }
   }, [loggedInUser])
   return (
-    <div>
-    <HomePage/>
-  </div>
+      <BrowserRouter>
+        <Routes>
+          <Route path= "/" element = {<LayoutPage/>}>
+          <Route path="" element = {<HomePage/>} />
+            <Route path="/catatlog" element = {<>Catalog</>} />
+            <Route path="/resource/:barcode" element = {<>Resource</>} />
+            <Route path="/profile/:userId" element = {<>User Profile</>} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
   )
 }
 
