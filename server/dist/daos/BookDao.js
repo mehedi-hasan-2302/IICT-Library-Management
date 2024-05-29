@@ -29,7 +29,7 @@ const BookSchema = new mongoose_1.Schema({
     barcode: { type: String, required: true, unique: true },
     cover: { type: String, required: true },
     title: { type: String, required: true, unique: true },
-    author: { type: [String], required: true },
+    authors: { type: [String], required: true },
     description: { type: String, required: true, },
     subjects: { type: [String], required: true, },
     publicationDate: { type: Date, required: true, },
