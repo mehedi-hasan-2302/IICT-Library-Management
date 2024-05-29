@@ -1,5 +1,5 @@
 import { createAsyncThunk,createSlice, isAction, PayloadAction } from "@reduxjs/toolkit";
-import { LoginUserPayload, User } from "../../models/User";
+import { LoginUserPayload, RegisterUserPayload, User } from "../../models/User";
 
 import axios from "axios";
 
@@ -29,11 +29,30 @@ export const loginUser = createAsyncThunk(
     }
 );
 
+
+export const registerUser = createAsyncThunk(
+    'auth/register',
+    async(user: RegisterUserPayload, thunkAPI) => {
+        try{
+            const req = await axios.post('http://localhost:8000/auth/register',user);
+            return req.data.user;
+        } catch(e){
+            return thunkAPI.rejectWithValue(e);
+        }
+    }
+)
+
 export const AuthenticationSlice= createSlice({
     name: "authentication",
     initialState,
     reducers: {
-
+        resetRegisterSuccess(state){
+            state = {
+                ...state,
+                registerSuccess: false
+            }
+            return state;
+        }
     },
     extraReducers: (builder) => {
         //pending logic 
@@ -45,12 +64,31 @@ export const AuthenticationSlice= createSlice({
             }
             return state;
         } );
+
+        builder.addCase(registerUser.pending, (state, action) => {
+            state = {
+                ...state,
+                error: false,
+                loading: true
+            }
+            return state;
+        } );
+
         //resolved logic
         builder.addCase(loginUser.fulfilled, (state, action) => {
             state = {
                 ...state,
                 loading: false,
                 loggedInUser: action.payload
+            }
+            return state;
+        });
+
+        builder.addCase(registerUser.fulfilled, (state, action) => {
+            state = {
+                ...state,
+                loading: false,
+                registerSuccess: true 
             }
             return state;
         });
@@ -63,9 +101,18 @@ export const AuthenticationSlice= createSlice({
             }
             return state;
         });
+
+        builder.addCase(registerUser.rejected, (state, action) => {
+            state = {
+                ...state,
+                error: true,
+                loading: false,
+            }
+            return state;
+        }); 
     }
 });
 
 
-export const {} = AuthenticationSlice.actions;
+export const {resetRegisterSuccess} = AuthenticationSlice.actions;
 export default AuthenticationSlice.reducer; 
