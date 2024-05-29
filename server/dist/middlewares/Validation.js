@@ -89,5 +89,13 @@ exports.Schemas = {
         delete: joi_1.default.object({
             barcode: joi_1.default.string().regex(/^(?=(?:\D*\d){10}(?:(?:\D*\d){3})?$)[\d-]+$/).required()
         })
+    },
+    libraryCard: {
+        create: joi_1.default.object({
+            user: joi_1.default.string().regex(/^[0-9a-fA-F]{24}$/).required()
+        }),
+        get: joi_1.default.object({
+            cardId: joi_1.default.string().regex(/^[0-9a-fA-F]{24}$/).required()
+        })
     }
 };

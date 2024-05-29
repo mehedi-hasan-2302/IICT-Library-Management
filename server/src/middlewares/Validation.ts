@@ -5,6 +5,7 @@ import { IUser } from '../models/User';
 import { IUserModel } from '../daos/UserDao';
 import { IBook } from '../models/Book';
 import { IBookModel } from '../daos/BookDao';
+import { ILibraryCard } from '../models/LibraryCard';
 
 export function ValidateSchema(schema: ObjectSchema, property:string){
     return async (req:Request, res:Response, next:NextFunction) =>{
@@ -87,6 +88,14 @@ export const Schemas = {
         }),
         delete: Joi.object<{barcode:string}> ({
             barcode: Joi.string().regex(/^(?=(?:\D*\d){10}(?:(?:\D*\d){3})?$)[\d-]+$/).required()
+        })
+    },
+    libraryCard: {
+        create: Joi.object<ILibraryCard>({
+            user: Joi.string().regex(/^[0-9a-fA-F]{24}$/).required()
+        }),
+        get: Joi.object<{cardId:string}>({
+            cardId: Joi.string().regex(/^[0-9a-fA-F]{24}$/).required()
         })
     }
 }
