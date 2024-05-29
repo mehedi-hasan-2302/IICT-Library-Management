@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.LibraryCardDoesNotExistError = exports.BookDoesNotExistError = exports.UserDoesNotExistError = exports.InvalidUsernameOrPasswordError = exports.UnableToSaveUserError = void 0;
+exports.LoanRecordDoesNotExistError = exports.LibraryCardDoesNotExistError = exports.BookDoesNotExistError = exports.UserDoesNotExistError = exports.InvalidUsernameOrPasswordError = exports.UnableToSaveUserError = void 0;
 class UnableToSaveUserError extends Error {
     constructor(message) {
         super(message);
@@ -31,3 +31,9 @@ class LibraryCardDoesNotExistError extends Error {
     }
 }
 exports.LibraryCardDoesNotExistError = LibraryCardDoesNotExistError;
+class LoanRecordDoesNotExistError extends Error {
+    constructor(message) {
+        super(message);
+    }
+}
+exports.LoanRecordDoesNotExistError = LoanRecordDoesNotExistError;

@@ -23,20 +23,19 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.LoanRecordSchema = void 0;
 const mongoose_1 = __importStar(require("mongoose"));
-const LoanRecordDao_1 = require("./LoanRecordDao");
 ;
-const BookSchema = new mongoose_1.Schema({
-    barcode: { type: String, required: true, unique: true },
-    cover: { type: String, required: true },
-    title: { type: String, required: true, unique: true },
-    authors: { type: [String], required: true },
-    description: { type: String, required: true },
-    subjects: { type: [String], required: true },
-    publicationDate: { type: Date, required: true },
-    publisher: { type: String, required: true },
-    pages: { type: Number, required: true },
-    genre: { type: String, required: true },
-    records: [LoanRecordDao_1.LoanRecordSchema]
+exports.LoanRecordSchema = new mongoose_1.Schema({
+    status: { type: String, required: true },
+    loanedDate: { type: Date, required: true },
+    dueDate: { type: Date, required: true },
+    returnedDate: { type: Date, required: false },
+    student: { type: mongoose_1.Schema.Types.ObjectId, required: true },
+    employeeOut: { type: mongoose_1.Schema.Types.ObjectId, required: true },
+    employeeIn: { type: mongoose_1.Schema.Types.ObjectId, required: false },
+    item: { type: mongoose_1.Schema.Types.ObjectId, required: true, ref: 'Book' }
+}, {
+    timestamps: true
 });
-exports.default = mongoose_1.default.model('Book', BookSchema);
+exports.default = mongoose_1.default.model('LoanRecord', exports.LoanRecordSchema);
