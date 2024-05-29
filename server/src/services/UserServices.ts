@@ -4,7 +4,7 @@ import {config} from '../config';
 
 import UserDao, {IUserModel} from '../daos/UserDao';
 import {IUser} from '../models/User';
-import { UnableToSaveUserError , InvalidUsernameOrPasswordError} from '../utils/libraryErrors';
+import { UnableToSaveUserError , InvalidUsernameOrPasswordError, UserDoesNotExistError} from '../utils/libraryErrors';
 
 export async function register(user:IUser):Promise<IUserModel>{
     const ROUNDS = config.server.rounds;
@@ -45,5 +45,56 @@ export async function login(credentials:{email:string, password:string}):Promise
 
         throw error;
         
+    }
+}
+
+export async function findAllUsers():Promise<IUserModel[]>{
+    try {
+        const users = await UserDao.find();
+        return users;
+
+    } catch (error) {
+        return [];
+        
+    }
+}
+
+
+export async function findUserById(userId:string):Promise<IUserModel>{
+    try {
+        
+        const user = await UserDao.findById(userId);
+
+        if(user) return user;
+
+        throw new UserDoesNotExistError("User does not exist with this ID");
+    } catch (error:any) {
+        throw error;
+    }
+}
+
+
+export async function modifyUser(user:IUserModel):Promise<IUserModel>{
+    try {
+        
+        let id = await UserDao.findByIdAndUpdate(user._id,user, {new:true});
+        if(!id) throw new UserDoesNotExistError("User does not exist with this ID");
+        return user;
+
+    } catch (error:any) {
+        throw error;
+    }
+}
+
+
+export async function removeUser(userId:string):Promise<string>{
+    try {
+
+        let deleted = await UserDao.findByIdAndDelete(userId);
+        if(!deleted) throw new UserDoesNotExistError("User does not exist with this ID");
+        return "User deleted successfully";
+
+    } catch (error) {
+        throw error;
     }
 }

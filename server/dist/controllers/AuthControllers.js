@@ -35,30 +35,28 @@ const handleRegister = (req, res) => __awaiter(void 0, void 0, void 0, function*
         }
     }
 });
-function handleLogin(req, res) {
-    return __awaiter(this, void 0, void 0, function* () {
-        const credentials = req.body;
-        try {
-            const loggedIn = yield (0, UserServices_1.login)(credentials);
-            res.status(200).json({
-                message: "User logged in successfully",
-                user: {
-                    _id: loggedIn._id,
-                    type: loggedIn.type,
-                    firstName: loggedIn.firstName,
-                    lastName: loggedIn.lastName,
-                    email: loggedIn.email
-                }
-            });
-        }
-        catch (error) {
-            if (error instanceof libraryErrors_1.InvalidUsernameOrPasswordError) {
-                res.status(401).json({ message: "Unable to login user at this time", error: error.message });
+const handleLogin = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const credentials = req.body;
+    try {
+        const loggedIn = yield (0, UserServices_1.login)(credentials);
+        res.status(200).json({
+            message: "User logged in successfully",
+            user: {
+                _id: loggedIn._id,
+                type: loggedIn.type,
+                firstName: loggedIn.firstName,
+                lastName: loggedIn.lastName,
+                email: loggedIn.email
             }
-            else {
-                res.status(500).json({ message: "Unable to login user at this time!", error: error.message });
-            }
+        });
+    }
+    catch (error) {
+        if (error instanceof libraryErrors_1.InvalidUsernameOrPasswordError) {
+            res.status(401).json({ message: "Unable to login user at this time", error: error.message });
         }
-    });
-}
+        else {
+            res.status(500).json({ message: "Unable to login user at this time!", error: error.message });
+        }
+    }
+});
 exports.default = { handleRegister, handleLogin };

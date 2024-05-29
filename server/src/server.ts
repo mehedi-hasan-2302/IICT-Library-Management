@@ -4,6 +4,7 @@ import cors from 'cors';
 import {config} from './config';
 import { registerRoutes } from './routes';
 
+
 const PORT = config.server.port;
 
 const app:Express = express();
