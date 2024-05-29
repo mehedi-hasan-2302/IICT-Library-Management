@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.paginateBooks = exports.queryBooks = exports.removeBook = exports.registerBook = exports.modifyBook = exports.findAllBooks = void 0;
+exports.paginateBooks = exports.queryBooks = exports.removeBook = exports.registerBook = exports.modifyBook = exports.findBookById = exports.findAllBooks = void 0;
 const BookDao_1 = __importDefault(require("../daos/BookDao"));
 const libraryErrors_1 = require("../utils/libraryErrors");
 function findAllBooks() {
@@ -21,6 +21,20 @@ function findAllBooks() {
     });
 }
 exports.findAllBooks = findAllBooks;
+function findBookById(id) {
+    return __awaiter(this, void 0, void 0, function* () {
+        try {
+            let book = yield BookDao_1.default.findById(id);
+            if (book)
+                return book;
+            throw new libraryErrors_1.BookDoesNotExistError("The specified book does not exist");
+        }
+        catch (error) {
+            throw error;
+        }
+    });
+}
+exports.findBookById = findBookById;
 function modifyBook(book) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
