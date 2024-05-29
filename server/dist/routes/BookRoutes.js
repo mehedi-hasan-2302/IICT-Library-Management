@@ -10,4 +10,5 @@ router.get('/', BookController_1.default.getAllBooks);
 router.post('/', (0, Validation_1.ValidateSchema)(Validation_1.Schemas.book.create, 'body'), BookController_1.default.createBook);
 router.put('/', (0, Validation_1.ValidateSchema)(Validation_1.Schemas.book.update, 'body'), BookController_1.default.updateBook);
 router.delete('/:barcode', (0, Validation_1.ValidateSchema)(Validation_1.Schemas.book.delete, 'params'), BookController_1.default.deleteBook);
+router.get('/query', BookController_1.default.searchForBooksByQuery);
 module.exports = router;

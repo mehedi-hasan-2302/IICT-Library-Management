@@ -2,7 +2,7 @@ export interface IBook{
     barcode:string;
     cover:string;
     title:string;
-    author:string[];
+    authors:string[];
     description:string;
     subjects:string[];
     publicationDate:Date;

@@ -68,4 +68,11 @@ function deleteBook(req, res) {
         }
     });
 }
-exports.default = { getAllBooks, createBook, updateBook, deleteBook };
+function searchForBooksByQuery(req, res) {
+    return __awaiter(this, void 0, void 0, function* () {
+        let { title, barcode, author, description, subject, genre, page = 1, limit = 25 } = req.query;
+        let books = yield (0, BookServices_1.queryBooks)(Number(page), Number(limit), title, barcode, description, author, subject, genre);
+        res.status(200).json({ message: "Retrieved books from query", page: books });
+    });
+}
+exports.default = { getAllBooks, createBook, updateBook, deleteBook, searchForBooksByQuery };
