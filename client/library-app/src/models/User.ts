@@ -19,3 +19,8 @@ export interface RegisterUserPayload{
     password: string;
     
 }
+
+export interface FetchUserPayload{
+    userId: string;
+    property: 'loggedInUser' | 'profileUser' 
+}
