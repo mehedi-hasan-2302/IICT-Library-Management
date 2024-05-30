@@ -24,19 +24,8 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose_1 = __importStar(require("mongoose"));
-const LoanRecordDao_1 = require("./LoanRecordDao");
 ;
-const BookSchema = new mongoose_1.Schema({
-    barcode: { type: String, required: true, unique: true },
-    cover: { type: String, required: true },
-    title: { type: String, required: true, unique: true },
-    authors: { type: [String], required: true },
-    description: { type: String, required: true },
-    subjects: { type: [String], required: true },
-    publicationDate: { type: Date, required: true },
-    publisher: { type: String, required: true },
-    pages: { type: Number, required: true },
-    genre: { type: String, required: true },
-    records: [LoanRecordDao_1.LoanRecordSchema]
+const LibraryCardSchema = new mongoose_1.Schema({
+    user: { type: mongoose_1.Schema.Types.ObjectId, required: true, unique: true, ref: "User" }
 });
-exports.default = mongoose_1.default.model('Book', BookSchema);
+exports.default = mongoose_1.default.model('LibraryCard', LibraryCardSchema);
