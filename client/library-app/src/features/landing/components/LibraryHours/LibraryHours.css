@@ -1,0 +1,30 @@
+.library-hours{
+    padding: 16px;
+    width: 100%;
+    height: fit-content;
+    background-color: var(--background-secondary);
+    border-radius: 12px;
+    box-shadow: var(--box-shadow);
+}
+
+.library-hours-table{
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#hours tr{
+    border: 1px solid rgb(129, 129, 129);
+    padding: 8px;
+}
+
+#hours tr:nth-child(even){
+    background-color: rgb(145, 118, 180);
+}
+
+#hours tr:nth-child(odd){
+    background-color: rgb(147, 188, 207);
+}
+
+#hours td{
+    font-size: 1.25rem;
+}
