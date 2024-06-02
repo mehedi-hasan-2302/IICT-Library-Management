@@ -4,7 +4,8 @@ import {useDispatch, useSelector} from "react-redux";
 import './CatalogIOverview.css';
 import { AppDispatch, RootState } from "../../../../redux/ReduxStore";
 import { fetchAllBooks } from "../../../../redux/slices/BookSlice";
-import { generateRandomGenres } from "../../utils/CatalogUtils";
+import { generateRandomGenres, getRandomBooksByGenre } from "../../utils/CatalogUtils";
+import { CatalogOverviewSection } from "../CatalogOverviewSection/CatalogOverviewSection";
 
 export const CatalogOverview:React.FC = () =>{
 
@@ -26,6 +27,9 @@ export const CatalogOverview:React.FC = () =>{
             <div className="catalog-overview">
                 <h2>Welcome to our library, we currently have {bookState.books && bookState.books.length} books. </h2>
                 <h4>Browse our selected books below, or search for something using the top navigation bar. </h4>
+                {genres.map((genre) => {
+                    return <CatalogOverviewSection key = {genre} books={getRandomBooksByGenre(genre, bookState.books)} label = {genre} />
+                })}
             </div> : <></>
         }
         </>
