@@ -89,5 +89,40 @@ exports.Schemas = {
         delete: joi_1.default.object({
             barcode: joi_1.default.string().regex(/^(?=(?:\D*\d){10}(?:(?:\D*\d){3})?$)[\d-]+$/).required()
         })
+    },
+    libraryCard: {
+        create: joi_1.default.object({
+            user: joi_1.default.string().regex(/^[0-9a-fA-F]{24}$/).required()
+        }),
+        get: joi_1.default.object({
+            cardId: joi_1.default.string().regex(/^[0-9a-fA-F]{24}$/).required()
+        })
+    },
+    loan: {
+        create: joi_1.default.object({
+            status: joi_1.default.string().valid('AVAILABLE', 'LOANED').required(),
+            loanedDate: joi_1.default.date().required(),
+            dueDate: joi_1.default.date().required(),
+            returnedDate: joi_1.default.date(),
+            student: joi_1.default.string().regex(/^[0-9a-fA-F]{24}$/).required(),
+            employeeOut: joi_1.default.string().regex(/^[0-9a-fA-F]{24}$/).required(),
+            employeeIn: joi_1.default.string().regex(/^[0-9a-fA-F]{24}$/),
+            item: joi_1.default.string().regex(/^[0-9a-fA-F]{24}$/).required()
+        }),
+        update: joi_1.default.object({
+            _id: joi_1.default.string().regex(/^[0-9a-fA-F]{24}$/).required(),
+            status: joi_1.default.string().valid('AVAILABLE', 'LOANED').required(),
+            loanedDate: joi_1.default.date().required(),
+            dueDate: joi_1.default.date().required(),
+            returnedDate: joi_1.default.date(),
+            student: joi_1.default.string().regex(/^[0-9a-fA-F]{24}$/).required(),
+            employeeOut: joi_1.default.string().regex(/^[0-9a-fA-F]{24}$/).required(),
+            employeeIn: joi_1.default.string().regex(/^[0-9a-fA-F]{24}$/),
+            item: joi_1.default.string().regex(/^[0-9a-fA-F]{24}$/).required()
+        }),
+        query: joi_1.default.object({
+            property: joi_1.default.string().valid('_id', 'status', 'loanedDate', 'dueDate', 'returnedDate', 'student', 'employeeOut', 'employeeIn', 'item').required(),
+            value: joi_1.default.alternatives().try(joi_1.default.string(), joi_1.default.date()).required()
+        })
     }
 };
