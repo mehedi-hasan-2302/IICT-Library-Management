@@ -72,6 +72,10 @@ export function calculatePaging(pageInfo:PageInfo):string[]{
                     pArr.push(`${i}`);
                 }
             }
+            pArr.push('...');
+            for(let i=total-5;i<=total;i++){
+                pArr.push(`${i}`);
+            }
         }
 
     }
