@@ -3,19 +3,21 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { Book } from "../../models/Book";
 import axios from "axios";
 import { retry } from "@reduxjs/toolkit/query";
+import { PageInfo } from "../../models/Page";
 
 interface BookSliceState {
     loading: boolean;
     error: boolean;
     books: Book[];
-    
+    pagingInformation: PageInfo | null;
 }
 
 
 const initialState: BookSliceState = {
     loading: true,
     error: false,
-    books: []
+    books: [],
+    pagingInformation: null
 }
 
 
@@ -25,6 +27,19 @@ export const fetchAllBooks = createAsyncThunk(
         try{
             let req = await axios.get('http://localhost:8000/book/');
             return req.data.books;
+        } catch(e){
+            return thunkAPI.rejectWithValue(e);
+        }
+    }
+)
+
+
+export const queryBooks = createAsyncThunk(
+    'book/query',
+    async (payload:string, thunkAPI) => {
+        try{
+            let req = await axios.get(`http://localhost:8000/book/query/${payload}`);
+            return req.data.page;
         } catch(e){
             return thunkAPI.rejectWithValue(e);
         }
@@ -44,10 +59,37 @@ export const BookSlice = createSlice({
             }
             return state;
         })
+
+        builder.addCase(fetchAllBooks.pending, (state, action) => {
+            state = {
+                ...state, 
+                books: [],
+                loading: true
+            }
+            return state;
+        })
+
         builder.addCase(fetchAllBooks.fulfilled, (state, action) => {
             state = {
                 ...state,
                 books: action.payload,
+                loading: false
+            }
+
+            return state;
+        })
+
+        builder.addCase(fetchAllBooks.fulfilled, (state, action) => {
+            state = {
+                ...state,
+                books: action.payload.items,
+                pagingInformation: {
+                    totalCount:   action.payload.totalCount,
+                    currentPage: action.payload.currentPage,
+                    totalPages: action.payload.totalPages,
+                    limit: action.payload.limit,
+                    pageCount: action.payload.pageCount
+                },
                 loading: false
             }
 
