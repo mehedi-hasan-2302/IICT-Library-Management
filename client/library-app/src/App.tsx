@@ -8,6 +8,7 @@ import { BrowserRouter,Route, Routes } from 'react-router-dom';
 import LayoutPage from './pages/LayoutPage/LayoutPage';
 import { fetchUser } from './redux/slices/AuthententicationSlice';
 import ProfilePage from './pages/ProfilePage/ProfilePage';
+import CatalogPage from './pages/CatalogPage/CatalogPage';
 
 
 function App() {
@@ -29,8 +30,8 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path= "/" element = {<LayoutPage/>}>
-          <Route path="" element = {<HomePage/>} />
-            <Route path="/catatlog" element = {<>Catalog</>} />
+          <Route path="" element = {<HomePage/>} /> 
+            <Route path="/catalog" element = {<CatalogPage/>} />
             <Route path="/resource/:barcode" element = {<>Resource</>} />
             <Route path="/profile/:userId" element = {<ProfilePage/>} />
           </Route>
