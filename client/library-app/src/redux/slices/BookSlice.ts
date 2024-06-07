@@ -6,6 +6,7 @@ import { retry } from "@reduxjs/toolkit/query";
 import { PageInfo } from "../../models/Page";
 import { ListItem } from "@mui/material";
 import { act } from "react";
+import { LocalDining } from "@mui/icons-material";
 
 interface BookSliceState {
     loading: boolean;
@@ -106,6 +107,25 @@ export const checkinBook = createAsyncThunk(
 )
 
 
+export const loadBokByBarcode = createAsyncThunk(
+    'book/id',
+    async (payload:string, thunkAPI) => {
+        try{
+            let res = await axios.get('http://localhost:8000/book/query?barcode=${payload}');
+            let book = res.data.page.item[0];
+
+            if(!book || book.barcode !== payload){
+                throw new Error();
+            }
+
+            return book;
+        } catch(e){
+            return thunkAPI.rejectWithValue(e);
+        }
+    }
+)
+
+
 export const BookSlice = createSlice({
     name: 'book',
     initialState,
@@ -146,6 +166,14 @@ export const BookSlice = createSlice({
         })
 
         builder.addCase(checkinBook.pending, (state, action) => {
+            state = {
+                ...state, 
+                loading: true
+            }
+            return state;
+        })
+
+        builder.addCase(loadBokByBarcode.pending, (state, action) => {
             state = {
                 ...state, 
                 loading: true
@@ -212,6 +240,24 @@ export const BookSlice = createSlice({
                 ...state,
                 loading: false,
                 books: bookList
+            }
+            return state;
+        })
+
+        builder.addCase(loadBokByBarcode.fulfilled, (state, action) => {
+            state = {
+                ...state,
+                loading: false,
+                currentBook: action.payload
+            }
+            return state;
+        })
+
+        builder.addCase(loadBokByBarcode.rejected, (state, action) => {
+            state = {
+                ...state,
+                loading: false,
+                error: true
             }
             return state;
         })
