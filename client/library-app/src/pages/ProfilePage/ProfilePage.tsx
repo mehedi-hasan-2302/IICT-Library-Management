@@ -5,7 +5,7 @@ import { useNavigate,useParams } from "react-router-dom";
 import './ProfilePage.css';
 import { AppDispatch, RootState } from "../../redux/ReduxStore";
 import { fetchUser } from "../../redux/slices/AuthententicationSlice";
-import { UpdateUserForm } from "../../features/profile";
+import { ProfileLoanHistory, UpdateUserForm } from "../../features/profile";
 
 export default function ProfilePage(){
     const loggedInUser = useSelector((state:RootState) => state.authentication.loggedInUser);
@@ -37,7 +37,7 @@ export default function ProfilePage(){
                         <UpdateUserForm />
                     </div>
                     <div className="profile-page-right-column">
-
+                        {profileUser && <ProfileLoanHistory/>}
                     </div>
 
                 </div>
