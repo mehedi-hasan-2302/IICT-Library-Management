@@ -39,11 +39,8 @@ export default function ProfilePage(){
                     <div className="profile-page-right-column">
                         {profileUser && <ProfileLoanHistory/>}
                     </div>
-
                 </div>
-
             </div>
-
         </div>
     )
 
