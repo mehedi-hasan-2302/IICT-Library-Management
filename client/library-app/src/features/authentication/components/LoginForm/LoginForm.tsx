@@ -2,7 +2,7 @@ import React,{useRef, useState} from "react";
 import './LoginFrom.css';
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch,RootState } from "../../../../redux/ReduxStore"; 
-import { loginUser } from "../../../../redux/slices/AuthententicationSlice";
+import { loginUser } from "../../../../redux/slices/AuthenticationSlice";
 import { User } from "../../../../models/User";
 
 

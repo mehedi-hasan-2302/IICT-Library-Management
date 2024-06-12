@@ -6,7 +6,7 @@ import { AppDispatch, RootState } from './redux/ReduxStore';
 import HomePage from './pages/HomePage/HomePage';
 import { BrowserRouter,Route, Routes } from 'react-router-dom';
 import LayoutPage from './pages/LayoutPage/LayoutPage';
-import { fetchUser } from './redux/slices/AuthententicationSlice';
+import { fetchUser } from './redux/slices/AuthenticationSlice';
 import ProfilePage from './pages/ProfilePage/ProfilePage';
 import CatalogPage from './pages/CatalogPage/CatalogPage';
 import ResourcePage from './pages/ResourcePage/ResourcePage';
@@ -14,7 +14,7 @@ import ResourcePage from './pages/ResourcePage/ResourcePage';
 
 function App() {
   
-  const loggedInUser = useSelector((state: RootState) => state.authentication.loggedInUser);
+  const loggedInUser = useSelector((state:RootState) => state.authentication.loggedInUser);
   const dispatch: AppDispatch = useDispatch();
 
   useEffect(()=>{

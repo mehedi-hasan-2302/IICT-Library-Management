@@ -12,7 +12,7 @@ export async function register(user:IUser):Promise<IUserModel>{
     try{
         const hashedPassword = await bcrypt.hash(user.password, ROUNDS);
         const saved = new UserDao({...user, password:hashedPassword});
-       
+
         return await saved.save(); 
 
 
