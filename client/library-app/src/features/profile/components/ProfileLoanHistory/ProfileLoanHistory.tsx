@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import { UseSelector, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import axios from "axios";
 
 import './ProfileLoanHistory.css';
@@ -40,7 +40,6 @@ export const ProfileLoanHistory:React.FC = () => {
                     <ProfileLoanRecord key={record._id} record={record} />
                 )
             })}
-
         </div>
     )
 }

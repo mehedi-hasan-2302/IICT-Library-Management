@@ -2,13 +2,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
 
 :root{
-  --background-primary: #e0e0e0;
-  --background-secondary: #e0e0e0;
+  --background-primary: #e9ecef;
+  --background-secondary: #ced4da;
   --text: #000000;
-  --text-secondary: #686868;
-  --primary: blue;
-  --secondary: green;
-  --box-shadow: #4f4d4d; 
+  --text-secondary: #0e0d0d;
+  --primary: #5E548E;
+  --secondary: #9F86C0;
+  --box-shadow: #0f0f0f; 
 }
 
 html, body, #root{
@@ -36,7 +36,7 @@ img, picture, video, canvas, svg{
   max-width: 100%;
 }
 
-input, buton, textarea, select{
+input, button, textarea, select{
   font: inherit;
 }
 

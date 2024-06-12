@@ -1,7 +1,7 @@
 import { createAsyncThunk,createSlice, isAction, PayloadAction } from "@reduxjs/toolkit";
 import { FetchUserPayload, LoginUserPayload, RegisterUserPayload, User } from "../../models/User";
 
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { BuildCircle, TrendingUpOutlined } from "@mui/icons-material";
 
 interface AuthenticationSliceState{
@@ -28,9 +28,14 @@ export const loginUser = createAsyncThunk(
         try{
             const req = await axios.post('http://localhost:8000/auth/login',user);
             return req.data.user;
-        } catch(e){
-            return thunkAPI.rejectWithValue(e);
+        } catch(e : any){
+            const errorPayload = {
+                message: e.message,
+                stack: e.stack,
+            };
+            return thunkAPI.rejectWithValue(errorPayload);
         }
+        
     }
 );
 
@@ -99,7 +104,7 @@ export const AuthenticationSlice= createSlice({
             }
             return state;
         },
-        resetUser(state, action: PayloadAction<string>){
+        resetUser(state, action:PayloadAction<string>){
             state = {
                 ...state,
                 [action.payload]: undefined
@@ -180,7 +185,7 @@ export const AuthenticationSlice= createSlice({
                 loading: false
             }
             return state;
-        })
+        }) 
 
         builder.addCase(updateUser.fulfilled, (state, action) => {
             state = {
@@ -224,7 +229,7 @@ export const AuthenticationSlice= createSlice({
             state = {
                 ...state,
                 error: true,
-                loading: true
+                loading: false
             }
             return state;
         })

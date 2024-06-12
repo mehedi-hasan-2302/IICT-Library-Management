@@ -24,6 +24,11 @@
 
 }
 
+.update-user-input:disabled{
+    color: var(--text-primary);
+    background-color: var(--background-secondary);
+}
+
 .update-user-input:focus{
     outline: none;
 }
