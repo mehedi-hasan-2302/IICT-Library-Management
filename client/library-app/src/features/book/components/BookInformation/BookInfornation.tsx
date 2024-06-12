@@ -8,7 +8,7 @@ interface BookInfoProps{
 
 }
 
-export const BookInformation: React.FC<BookInfoProps> = ({book}) => {
+export const BookInformation:React.FC<BookInfoProps> = ({book}) => {
     return (
         <div className="book-info">
             <div className="book-info-container">

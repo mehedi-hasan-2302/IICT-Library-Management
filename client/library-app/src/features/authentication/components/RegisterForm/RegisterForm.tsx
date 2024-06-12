@@ -3,7 +3,7 @@ import './RegisterForm.css';
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../../redux/ReduxStore";
 import { AppDispatch } from "../../../../redux/ReduxStore";
-import { registerUser, resetRegisterSuccess } from "../../../../redux/slices/AuthententicationSlice";
+import { registerUser, resetRegisterSuccess } from "../../../../redux/slices/AuthenticationSlice";
 
 interface RegisterFromProps{
     toggleLogin(): void;

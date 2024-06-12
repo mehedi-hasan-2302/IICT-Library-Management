@@ -3,7 +3,7 @@ import {  useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../../../redux/ReduxStore";
 
 import './RegisterLibraryCardForm.css';
-import { getLibraryCard } from "../../../../redux/slices/AuthententicationSlice";
+import { getLibraryCard } from "../../../../redux/slices/AuthenticationSlice";
 import { setDisplayLibraryCard, setDisplayLogin } from "../../../../redux/slices/ModalSlice";
 
 export const RegisterLibraryCardForm:React.FC = () => {

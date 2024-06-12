@@ -4,7 +4,7 @@ import { useNavigate,useParams } from "react-router-dom";
 
 import './ProfilePage.css';
 import { AppDispatch, RootState } from "../../redux/ReduxStore";
-import { fetchUser } from "../../redux/slices/AuthententicationSlice";
+import { fetchUser } from "../../redux/slices/AuthenticationSlice";
 import { ProfileLoanHistory, UpdateUserForm } from "../../features/profile";
 
 export default function ProfilePage(){
@@ -37,7 +37,7 @@ export default function ProfilePage(){
                         <UpdateUserForm />
                     </div>
                     <div className="profile-page-right-column">
-                        {profileUser && <ProfileLoanHistory/>}
+                        { profileUser && <ProfileLoanHistory/>}
                     </div>
                 </div>
             </div>
