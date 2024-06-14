@@ -15,6 +15,8 @@ export const UpdateUserForm:React.FC = () => {
     const [user, setUser] = useState<User | undefined>(userState.profileUser);
     const navigate = useNavigate();
 
+    
+
     const updateUserState = (e:React.ChangeEvent<HTMLInputElement>) => {
         setDisplayUpdate(true);
         if(e.target.value && e.target.name && user){
@@ -45,6 +47,7 @@ export const UpdateUserForm:React.FC = () => {
                 setUser(JSON.parse(JSON.stringify(userState.profileUser)));
             }
         }, [userState.profileUser?._id])
+
 
     return(
         <form className="update-user-form">
