@@ -15,7 +15,7 @@ import ResourcePage from './pages/ResourcePage/ResourcePage';
 function App() {
   
   const loggedInUser = useSelector((state:RootState) => state.authentication.loggedInUser);
-  const dispatch: AppDispatch = useDispatch();
+  const dispatch:AppDispatch = useDispatch();
 
   useEffect(()=>{
     let userId = localStorage.getItem("userId");
@@ -27,6 +27,7 @@ function App() {
       }));
     }
   }, [loggedInUser])
+  
   return (
       <BrowserRouter>
         <Routes>

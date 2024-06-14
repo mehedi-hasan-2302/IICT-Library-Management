@@ -32,10 +32,8 @@ export const BookHistoryItem:React.FC<BookHistoryItemProps> = ({record}) => {
             <div className="book-history-item-group">
                 <p>Loaner: {record.employeeOut}</p>
                 <p>Return By Date: {new Date(record.dueDate).toDateString()}</p>
-                {record.status === 'AVAILABLE' && record.employeeIn && <p> Returner: {record.employeeIn}</p>}
+                {record.status === 'AVAILABLE' && record.employeeIn && <p> Returner:  {record.employeeIn}</p>}
             </div>
         </div>
     )
-
-
 }

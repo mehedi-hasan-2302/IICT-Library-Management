@@ -20,8 +20,8 @@ export function getRandomBooksByGenre(genre:string, books:Book[]):Book[]{
     if(filteredBooks.length < 10) return filteredBooks;
 
     while(randomBooks.length!== 10){
-        let index = Math.floor(Math.random()*filteredBooks.length);
-        if(!randomBooks.some(b => b['barcode'] === filteredBooks[index].barcode)) randomBooks.push(filteredBooks[index])
+        let index = Math.floor(Math.random() * filteredBooks.length);
+        if(!randomBooks.some(b => b['barcode'] === filteredBooks[index].barcode)) randomBooks.push(filteredBooks[index]);
     }
 
     return randomBooks;

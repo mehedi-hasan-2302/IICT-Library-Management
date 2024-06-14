@@ -46,7 +46,7 @@ export const CatalogAdvancedSearch:React.FC = () => {
             <h2>
                 Advanced Book Search
             </h2>
-            <p>Fill in as many or litle fields to narrow down your search results</p>
+            <p>Fill in as many or little fields to narrow down your search results</p>
             <form className="catalog-advanced-search-form">
                 <div className="catalog-advanced-search-form-input-group">
                     <p>ISBN</p>
