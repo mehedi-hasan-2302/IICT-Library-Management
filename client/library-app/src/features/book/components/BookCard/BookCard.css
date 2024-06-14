@@ -59,16 +59,16 @@
     width: 90%;
     height: 2.5rem;
     border: none;
-    border-radius: 12px;
+    border-radius: 25px;
 }
 
 .available{
-    background-color: var(--secondary);
+    background-color: rgb(62, 216, 82);
 }
 
 
 .unavailable{
-    background-color: red;
+    background-color: rgb(221, 16, 16);
 }
 
 .checkout:hover {
@@ -82,4 +82,11 @@
     cursor: pointer;
     background-color: var(--background-secondary);
     border: 2px solid red;
+}
+
+.buttonClass{
+    /* background-color: rgb(14, 211, 14); */
+    font-size: 18px;
+    font-weight: 600;
+
 }

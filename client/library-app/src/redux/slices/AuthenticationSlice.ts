@@ -1,7 +1,7 @@
 import { createAsyncThunk,createSlice, isAction, PayloadAction } from "@reduxjs/toolkit";
 import { FetchUserPayload, LoginUserPayload, RegisterUserPayload, User } from "../../models/User";
 
-import axios, { AxiosError } from "axios";
+import axios from "axios";
 import { BuildCircle, TrendingUpOutlined } from "@mui/icons-material";
 
 interface AuthenticationSliceState{
@@ -56,13 +56,13 @@ export const fetchUser = createAsyncThunk(
     'auth/fetch',
     async (payload: FetchUserPayload, thunkAPI) => {
         try{
-            const req = await axios.get(`http://localhost:8000/user/${payload.userId}`);
+            const req = await axios.get(`http://localhost:8000/users/${payload.userId}`);
             const user = req.data.user;
             
             return{
                 user,
                 property: payload.property
-            }
+            };
         } catch(e){
             return thunkAPI.rejectWithValue(e);
         } 
@@ -93,7 +93,7 @@ export const getLibraryCard = createAsyncThunk(
     }
 )
 
-export const AuthenticationSlice= createSlice({
+export const AuthenticationSlice = createSlice({
     name: "authentication",
     initialState,
     reducers: {
@@ -130,7 +130,7 @@ export const AuthenticationSlice= createSlice({
                 loading: true
             }
             return state;
-        } );
+        } )
 
         builder.addCase(fetchUser.pending, (state, action) => {
             state = {

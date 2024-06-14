@@ -58,7 +58,7 @@ export const checkoutBook = createAsyncThunk(
             const returnDate = new Date();
             returnDate.setDate(returnDate.getDate() + 14);
             
-            const getStudent = await axios.get(`http://localhost:8000//card/${payload.libraryCard}`);
+            const getStudent = await axios.get(`http://localhost:8000/card/${payload.libraryCard}`);
 
             let studentId = getStudent.data.libraryCard.user._id;
 
@@ -107,12 +107,12 @@ export const checkinBook = createAsyncThunk(
 )
 
 
-export const loadBokByBarcode = createAsyncThunk(
+export const loadBookByBarcode = createAsyncThunk(
     'book/id',
     async (payload:string, thunkAPI) => {
         try{
-            let res = await axios.get('http://localhost:8000/book/query?barcode=${payload}');
-            let book = res.data.page.item[0];
+            let res = await axios.get(`http://localhost:8000/book/query?barcode=${payload}`);
+            let book = res.data.page.items[0];
 
             if(!book || book.barcode !== payload){
                 throw new Error();
@@ -172,8 +172,8 @@ export const BookSlice = createSlice({
             }
             return state;
         })
-
-        builder.addCase(loadBokByBarcode.pending, (state, action) => {
+                //seems problem BOOK
+        builder.addCase(loadBookByBarcode.pending, (state, action) => {
             state = {
                 ...state, 
                 loading: true
@@ -244,7 +244,7 @@ export const BookSlice = createSlice({
             return state;
         })
 
-        builder.addCase(loadBokByBarcode.fulfilled, (state, action) => {
+        builder.addCase(loadBookByBarcode.fulfilled, (state, action) => {
             state = {
                 ...state,
                 loading: false,
@@ -253,7 +253,7 @@ export const BookSlice = createSlice({
             return state;
         })
 
-        builder.addCase(loadBokByBarcode.rejected, (state, action) => {
+        builder.addCase(loadBookByBarcode.rejected, (state, action) => {
             state = {
                 ...state,
                 loading: false,

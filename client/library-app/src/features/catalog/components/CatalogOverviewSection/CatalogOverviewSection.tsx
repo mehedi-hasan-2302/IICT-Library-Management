@@ -25,7 +25,7 @@ export const CatalogOverviewSection:React.FC<CatalogOverviewSectionProps> = ({bo
         <div className="catalog-overview-section">
             <div className="catalog-overview-section-top">
             <h4>{label}</h4>
-            <p className="catalog-overview-section-more" onClick={handleViewMore}>View More...</p>
+            <p className="catalog-section-overview-more" onClick={handleViewMore}>View More...</p>
             </div>
             {books.length > 0 && !bookState.loading && <BookCarousel books = {books} />}
 

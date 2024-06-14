@@ -8,19 +8,15 @@ export const UpcomingEvents:React.FC = () => {
     return(
         <div className="upcoming-events">
             <div className="upcoming-events-header-group">
-                <AutoAwesome sx = {
-                    {
+                <AutoAwesome sx = {{
                         fontSize: "2.5rem",
-                        color: "#3626A7"
-                    }
-                    } />
+                        color: "#d90429"
+                    }} />
                     <h2>UpcomingEvents </h2>
-                    <AutoAwesome sx = {
-                    {
+                    <AutoAwesome sx = {{
                         fontSize: "2.5rem",
-                        color: "#3626A7"
-                    }
-                    } />
+                        color: "#d90429"
+                    }} />
             </div>
             <h3>This Summer</h3>
             <h4>Tuesday's: 10:00 Am - Noon</h4>

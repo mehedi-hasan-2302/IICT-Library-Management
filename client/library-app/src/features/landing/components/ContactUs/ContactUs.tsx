@@ -7,7 +7,7 @@ export const ContactUs:React.FC = () => {
         <div className="contact-us">
             <h3>Contact Us</h3>
             <h4>Address</h4>
-            <p>123 2nd Floor,IICT Building,SUST</p>
+            <p>2nd Floor,IICT Building,SUST</p>
             <div className="contact-us-divider"> </div>
             <p>017xxxxxxxx</p>
             <div className="contact-us-divider"> </div>

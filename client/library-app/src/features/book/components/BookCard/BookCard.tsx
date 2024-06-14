@@ -52,7 +52,7 @@ export const BookCard:React.FC<BookCardProps> = ({book}) => {
             c += " unavailable"
         }
 
-        if(user && user.type === 'EMPLOYEE' && !available){
+        if(user && user.type === 'EMPLOYEE' && available){
             c += " checkout";
         } else if(user && user.type === 'EMPLOYEE' && !available){
             c += " checkin";

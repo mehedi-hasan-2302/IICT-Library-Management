@@ -9,7 +9,7 @@
 }
 
 
-q.upcoming-events-header-group{
+.upcoming-events-header-group{
     width: 100%;
     display: flex;
     justify-content: space-evenly;
