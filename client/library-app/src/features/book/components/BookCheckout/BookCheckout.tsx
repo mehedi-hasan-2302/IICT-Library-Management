@@ -18,13 +18,11 @@ export const BookCheckout:React.FC = () => {
     const checkout = (e:React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
         if(book && user && libraryCardRef && libraryCardRef.current){
-            dispatch(checkoutBook(
-                {
+            dispatch(checkoutBook({
                     book,
                     employee:user,
                     libraryCard: libraryCardRef.current.value
-                }
-            ))
+                }))
         }
         dispatch(setCurrentBook(undefined));
         dispatch(setDisplayLoan(false));

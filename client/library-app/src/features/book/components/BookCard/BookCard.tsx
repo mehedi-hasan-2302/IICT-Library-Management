@@ -70,7 +70,7 @@ export const BookCard:React.FC<BookCardProps> = ({book}) => {
                 <h3 className="book-card-author">{mapAuthorsToString(book)}</h3>
                 <p className="book-card-description">{book.description}</p>
                 </div>
-                <button className="buttonClass" onClick={handleLoan}> Status: {available ? "AVAILABLE" : "UNAVAILABLE"}</button>
+                <button className={buttonClass} onClick={handleLoan}> Status: {available ? "AVAILABLE" : "UNAVAILABLE"}</button>
             </div>
     )
 }
