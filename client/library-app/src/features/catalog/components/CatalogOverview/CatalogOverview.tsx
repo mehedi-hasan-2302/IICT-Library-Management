@@ -6,6 +6,8 @@ import { AppDispatch, RootState } from "../../../../redux/ReduxStore";
 import { fetchAllBooks } from "../../../../redux/slices/BookSlice";
 import { generateRandomGenres, getRandomBooksByGenre } from "../../utils/CatalogUtils";
 import { CatalogOverviewSection } from "../CatalogOverviewSection/CatalogOverviewSection";
+import { colors } from "@mui/material";
+import { red } from "@mui/material/colors";
 
 export const CatalogOverview:React.FC = () =>{
 
@@ -25,8 +27,11 @@ export const CatalogOverview:React.FC = () =>{
         {
             bookState.books.length > 0 && !bookState.loading ?
             <div className="catalog-overview">
-                <h2>Welcome to our library, we currently have {bookState.books && bookState.books.length} books. </h2>
-                <h4>Browse our selected books below, or search for something using the top navigation bar. </h4>
+                <div className="catalog-heading">
+                <h2>Welcome to IICT Library,SUST</h2>
+                <h5>we currently have {bookState.books && bookState.books.length} books. Browse Books on your will and search for the Book using the Search option. </h5>
+                <h6 className="red-line">In Case of Loaning Books,Ask Librarian with your Library Card_ID</h6>
+                </div>
                 {genres.map((genre) => {
                     return <CatalogOverviewSection key = {genre} books={getRandomBooksByGenre(genre, bookState.books)} label = {genre} />
                 })}
