@@ -12,7 +12,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.findLibraryCard = exports.registerLibraryCard = void 0;
+exports.registerLibraryCard = registerLibraryCard;
+exports.findLibraryCard = findLibraryCard;
 const LibraryCardDao_1 = __importDefault(require("../daos/LibraryCardDao"));
 const libraryErrors_1 = require("../utils/libraryErrors");
 function registerLibraryCard(card) {
@@ -29,7 +30,6 @@ function registerLibraryCard(card) {
         }
     });
 }
-exports.registerLibraryCard = registerLibraryCard;
 function findLibraryCard(libraryCardId) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
@@ -43,4 +43,3 @@ function findLibraryCard(libraryCardId) {
         }
     });
 }
-exports.findLibraryCard = findLibraryCard;

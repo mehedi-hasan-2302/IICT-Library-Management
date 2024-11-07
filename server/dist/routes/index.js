@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.registerRoutes = void 0;
+exports.registerRoutes = registerRoutes;
 const AuthRoutes_1 = __importDefault(require("./AuthRoutes"));
 const UserRoutes_1 = __importDefault(require("./UserRoutes"));
 const BookRoutes_1 = __importDefault(require("./BookRoutes"));
@@ -19,4 +19,3 @@ function registerRoutes(app) {
     app.use("/card", LibraryCardRoutes_1.default);
     app.use("/loan", LoanedRecordRoute_1.default);
 }
-exports.registerRoutes = registerRoutes;
