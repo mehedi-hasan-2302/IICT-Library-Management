@@ -3,7 +3,7 @@
     width: 100%;
     height: fit-content;
     background-color: var(--background-secondary);
-    border-radius: 12px;
+    border-radius: 20px;
     box-shadow: var(--box-shadow);
 }
 
@@ -13,16 +13,16 @@
 }
 
 #hours tr{
-    border: 1px solid rgb(129, 129, 129);
+    border: 1px solid rgb(160, 159, 159);
     padding: 8px;
 }
 
 #hours tr:nth-child(even){
-    background-color: rgb(145, 118, 180);
+    background-color: #84a98c;
 }
 
 #hours tr:nth-child(odd){
-    background-color: rgb(147, 188, 207);
+    background-color: #52796f;
 }
 
 #hours td{

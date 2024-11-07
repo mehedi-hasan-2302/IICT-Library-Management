@@ -20,7 +20,7 @@ export async function register(user:IUser):Promise<IUserModel>{
         throw new UnableToSaveUserError(error.message);
 
     }
-}
+} 
 
 export async function login(credentials:{email:string, password:string}):Promise<IUserModel>{
     const {email,password} = credentials;
@@ -41,8 +41,7 @@ export async function login(credentials:{email:string, password:string}):Promise
             }
         }
         
-    } catch (error:any) {
-
+    } catch (error:any) { 
         throw error;
         
     }

@@ -14,7 +14,7 @@ export const LoanBookModal:React.FC = () => {
     }
 
     return(
-        <Modal content = {currentBook ? determineLoanModalContent(currentBook) : <></>} toggleModal = {closeModal} />
+        <Modal content = {currentBook ? determineLoanModalContent(currentBook) : <></>} toggleModal={closeModal} />
     )
 
-}
+} 

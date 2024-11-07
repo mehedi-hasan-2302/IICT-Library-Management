@@ -12,7 +12,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.removeUser = exports.modifyUser = exports.findUserById = exports.findAllUsers = exports.login = exports.register = void 0;
+exports.register = register;
+exports.login = login;
+exports.findAllUsers = findAllUsers;
+exports.findUserById = findUserById;
+exports.modifyUser = modifyUser;
+exports.removeUser = removeUser;
 const bcrypt_1 = __importDefault(require("bcrypt"));
 const config_1 = require("../config");
 const UserDao_1 = __importDefault(require("../daos/UserDao"));
@@ -30,7 +35,6 @@ function register(user) {
         }
     });
 }
-exports.register = register;
 function login(credentials) {
     return __awaiter(this, void 0, void 0, function* () {
         const { email, password } = credentials;
@@ -54,7 +58,6 @@ function login(credentials) {
         }
     });
 }
-exports.login = login;
 function findAllUsers() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
@@ -66,7 +69,6 @@ function findAllUsers() {
         }
     });
 }
-exports.findAllUsers = findAllUsers;
 function findUserById(userId) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
@@ -80,7 +82,6 @@ function findUserById(userId) {
         }
     });
 }
-exports.findUserById = findUserById;
 function modifyUser(user) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
@@ -94,7 +95,6 @@ function modifyUser(user) {
         }
     });
 }
-exports.modifyUser = modifyUser;
 function removeUser(userId) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
@@ -108,4 +108,3 @@ function removeUser(userId) {
         }
     });
 }
-exports.removeUser = removeUser;

@@ -12,7 +12,13 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.paginateBooks = exports.queryBooks = exports.removeBook = exports.registerBook = exports.modifyBook = exports.findBookById = exports.findAllBooks = void 0;
+exports.findAllBooks = findAllBooks;
+exports.findBookById = findBookById;
+exports.modifyBook = modifyBook;
+exports.registerBook = registerBook;
+exports.removeBook = removeBook;
+exports.queryBooks = queryBooks;
+exports.paginateBooks = paginateBooks;
 const BookDao_1 = __importDefault(require("../daos/BookDao"));
 const libraryErrors_1 = require("../utils/libraryErrors");
 function findAllBooks() {
@@ -20,7 +26,6 @@ function findAllBooks() {
         return yield BookDao_1.default.find();
     });
 }
-exports.findAllBooks = findAllBooks;
 function findBookById(id) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
@@ -34,7 +39,6 @@ function findBookById(id) {
         }
     });
 }
-exports.findBookById = findBookById;
 function modifyBook(book) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
@@ -48,14 +52,12 @@ function modifyBook(book) {
         }
     });
 }
-exports.modifyBook = modifyBook;
 function registerBook(book) {
     return __awaiter(this, void 0, void 0, function* () {
         const savedBook = new BookDao_1.default(book);
         return yield savedBook.save();
     });
 }
-exports.registerBook = registerBook;
 function removeBook(barcode) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
@@ -69,7 +71,6 @@ function removeBook(barcode) {
         }
     });
 }
-exports.removeBook = removeBook;
 function queryBooks(page, limit, title, barcode, description, author, subject, genre) {
     return __awaiter(this, void 0, void 0, function* () {
         let books = yield BookDao_1.default.find();
@@ -109,7 +110,6 @@ function queryBooks(page, limit, title, barcode, description, author, subject, g
         return paginateBooks(filteredBooks, page, limit);
     });
 }
-exports.queryBooks = queryBooks;
 function paginateBooks(books, page, limit) {
     let pageBooks = [];
     const pages = Math.ceil(books.length / Number(limit));
@@ -132,4 +132,3 @@ function paginateBooks(books, page, limit) {
     };
     return pageObject;
 }
-exports.paginateBooks = paginateBooks;

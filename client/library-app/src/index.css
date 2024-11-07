@@ -1,14 +1,14 @@
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap'); 
 
 :root{
-  --background-primary: #e9ecef;
-  --background-secondary: #ced4da;
+  --background-primary: #DEE2E6;
+  --background-secondary: #CED4DA;
   --text: #000000;
-  --text-secondary: #0e0d0d;
-  --primary: #5E548E;
-  --secondary: #9F86C0;
-  --box-shadow: #0f0f0f; 
+  --text-secondary: #ffffff;
+  --primary: #6c757d;
+  --secondary: #6c757d;
+  --box-shadow: rgba(64, 64, 66, 0.911) 0px 7px 29px 0px; 
 }
 
 html, body, #root{
@@ -93,9 +93,10 @@ p{
 }
 
 .page-container{
-  width: 75%;
+  width: 90%;
   height: 100%;
   padding: 16px;
+  display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: flex-start;

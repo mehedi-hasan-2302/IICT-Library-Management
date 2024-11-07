@@ -2,3 +2,14 @@
     width: 100%;
     height: fit-content;
 }
+
+.catalog-heading{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.red-line{
+    color: rgb(184, 6, 6);
+}

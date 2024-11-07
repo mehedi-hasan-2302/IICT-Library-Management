@@ -9,12 +9,13 @@
 }
 
 .footer-text{
-    font-size: .85rem;
+    font-size: 1.25rem;
+    font-weight: 500;
 }
 
 .footer-text:hover{
-    color: var(--background-secondary);
-    font-weight: 600;
+    color: rgb(3, 3, 3);
+    font-weight:  600;
     text-decoration: underline;
     cursor: pointer;
 }
@@ -27,7 +28,8 @@
 }
 
 .footer-social-text{
-    font-size: .85rem;
+    font-size: 1.25rem;
+    font-weight: 500;
     margin-right: 10px;
 }
 
@@ -40,5 +42,5 @@
 
 
 .footer-social:hover{
-    color: var(--background-secondary);
+    color: rgb(5, 5, 5);
 }

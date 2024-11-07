@@ -64,17 +64,19 @@ export const checkoutBook = createAsyncThunk(
 
             const record = {
                 status: "LOANED",
-                loanDate: new Date(),
+                loanedDate: new Date(),
                 dueDate: returnDate,
                 student: studentId,
                 employeeOut: payload.employee._id,
                 item: payload.book._id
             }
 
-            const loanReq = await axios.post('http://localhost:8000/loan', record);
-            const loan = loanReq.data.record;
+            const loadReq = await axios.post('http://localhost:8000/loan', record);
+            const loan = loadReq.data.record;
 
             return loan;
+
+
         } catch(e){
             return thunkAPI.rejectWithValue(e);
         }
@@ -130,7 +132,7 @@ export const BookSlice = createSlice({
     name: 'book',
     initialState,
     reducers: {
-        setCurrentBook(state, action: PayloadAction<Book | undefined>){
+        setCurrentBook(state, action:PayloadAction<Book | undefined>){
             state = {
                 ...state,
                 currentBook: action.payload

@@ -46,25 +46,25 @@ export const Navbar:React.FC = () => {
                         fontSize: "3rem"
                     }
                 } />
-                <h1>My Library</h1>
+                <h1>IICT Library,SUST</h1>
             </Link>
             <div className="navbar-option-section">
-                <Link to="/catalog" className="navbar-option navbar-link">
-                    <h2>View Catalog</h2>
-                </Link>
                 <div className="navbar-search-box">
-                    <input className="navbar-search-input" placeholder="Search Catalog" onKeyDown={handleEnterKey} ref={searchRef}/>
+                    <input className="navbar-search-input" placeholder="Search Books" onKeyDown={handleEnterKey} ref={searchRef}/>
                     <Search onClick = {handleSearchIconClicked}
                         sx = {{
                             cursor: "pointer",
                             fontSize: "2rem"
                         }}
                     />
-                    </div>
+                </div>
+                <Link to="/catalog" className="navbar-option navbar-link">
+                    <h2>All Books</h2>
+                </Link>
                     {
                         authState.loggedInUser ?
                         <div className="navbar-option" onClick={navigateToProfile}>
-                            <h2>{authState.loggedInUser.firstName}'s Account</h2>
+                            <h2>{authState.loggedInUser.firstName} {authState.loggedInUser.lastName}</h2>
                         </div>
                         : 
                         <div className="navbar-option" onClick={toggleLogin}>

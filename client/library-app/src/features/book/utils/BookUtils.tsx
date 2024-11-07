@@ -7,7 +7,7 @@ export function mapAuthorsToString(book:Book){
 
     for(let author of book.authors){
         authors += author;
-        authors += ",";
+        authors += ", ";
     }
 
     return authors.slice(0,authors.length - 2);

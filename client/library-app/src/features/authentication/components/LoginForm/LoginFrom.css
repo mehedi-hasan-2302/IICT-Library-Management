@@ -11,7 +11,7 @@
 
 .login-form-error {
     margin-bottom: 16px;
-    color: red;
+    color: rgb(240, 6, 6);
 }
 
 .login-form-input-group{
@@ -28,7 +28,7 @@
 }
 
 .login-form-input:focus{
-    color: var(--text-secondary);
+    color: black;
 }
 
 .login-form-input:focus{
@@ -41,7 +41,8 @@
     border: none;
     background-color: var(--secondary);
     border-radius: 5px;
-    font-size: 1.25rem;
+    font-size: 1.5rem;
+    font-weight: 500;
     margin-bottom: 16px;
     margin-top: 16px;
 }
@@ -49,13 +50,13 @@
 .login-form-submit:hover{
     cursor: pointer;
     background-color: var(--background-primary);
-    color: var(--primary);
+    color: black;
     box-shadow: var(--box-shadow);
-    border: 2px solid var(--primary);
+    border: 3px solid var(--primary);
 }
 
 .login-form-register{
-    color: var(--primary);
+    color: rgb(223, 26, 26);
     cursor: pointer;
     margin-left: 4px;
 }

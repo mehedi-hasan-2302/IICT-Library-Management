@@ -12,7 +12,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.queryRecords = exports.findAllRecords = exports.modifyRecord = exports.generateRecord = void 0;
+exports.generateRecord = generateRecord;
+exports.modifyRecord = modifyRecord;
+exports.findAllRecords = findAllRecords;
+exports.queryRecords = queryRecords;
 const LoanRecordDao_1 = __importDefault(require("../daos/LoanRecordDao"));
 const BookServices_1 = require("./BookServices");
 const libraryErrors_1 = require("../utils/libraryErrors");
@@ -33,7 +36,6 @@ function generateRecord(record) {
         }
     });
 }
-exports.generateRecord = generateRecord;
 function modifyRecord(record) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
@@ -53,7 +55,6 @@ function modifyRecord(record) {
         }
     });
 }
-exports.modifyRecord = modifyRecord;
 function findAllRecords() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
@@ -64,7 +65,6 @@ function findAllRecords() {
         }
     });
 }
-exports.findAllRecords = findAllRecords;
 function queryRecords(params) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
@@ -75,4 +75,3 @@ function queryRecords(params) {
         }
     });
 }
-exports.queryRecords = queryRecords;
