@@ -13,7 +13,7 @@ export const ProfileLoanHistory:React.FC = () => {
     const [records, setRecords] = useState<LoanRecord[]>([]);
 
     const fetchRecordsForUser = async () => {
-        if(user){
+        if(user){   
             try{
                 let res = await axios.post('http://localhost:8000/loan/query',{
                     property: "student",
@@ -34,7 +34,7 @@ export const ProfileLoanHistory:React.FC = () => {
 
     return(
         <div className="profile-loan-history">
-            <h3 className="profile-loan-header"> {user?.firstName}'s Item Loan history: </h3>
+            <h3 className="profile-loan-header"> {user?.firstName}'s Loan history: </h3>
             {records.map((record) => {
                 return(
                     <ProfileLoanRecord key={record._id} record={record} />

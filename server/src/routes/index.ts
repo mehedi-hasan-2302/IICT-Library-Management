@@ -4,6 +4,7 @@ import userRoutes from './UserRoutes';
 import bookRoutes from './BookRoutes';
 import cardRoutes from './LibraryCardRoutes';
 import loanRoutes from './LoanedRecordRoute';
+import activityRoutes from './ActivityLogRoutes';
 
 export function registerRoutes(app:Express){
 
@@ -18,4 +19,5 @@ export function registerRoutes(app:Express){
     app.use("/book",bookRoutes);
     app.use("/card",cardRoutes);
     app.use("/loan", loanRoutes);
+    app.use("/log",activityRoutes);
 }

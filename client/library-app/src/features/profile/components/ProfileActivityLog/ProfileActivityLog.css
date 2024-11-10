@@ -1,0 +1,11 @@
+.profile-activity-log{
+    height: 100%;
+    width: 100%;
+    overflow-y: auto;
+}
+
+.profile-activity-header{
+    position: sticky;
+    top: 0;
+    background-color: var(--background-secondary);
+}

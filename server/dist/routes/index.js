@@ -9,6 +9,7 @@ const UserRoutes_1 = __importDefault(require("./UserRoutes"));
 const BookRoutes_1 = __importDefault(require("./BookRoutes"));
 const LibraryCardRoutes_1 = __importDefault(require("./LibraryCardRoutes"));
 const LoanedRecordRoute_1 = __importDefault(require("./LoanedRecordRoute"));
+const ActivityLogRoutes_1 = __importDefault(require("./ActivityLogRoutes"));
 function registerRoutes(app) {
     app.get("/health", (req, res) => {
         res.status(200).json({ message: "Server is running properly" });
@@ -18,4 +19,5 @@ function registerRoutes(app) {
     app.use("/book", BookRoutes_1.default);
     app.use("/card", LibraryCardRoutes_1.default);
     app.use("/loan", LoanedRecordRoute_1.default);
+    app.use("/log", ActivityLogRoutes_1.default);
 }

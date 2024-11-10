@@ -5,7 +5,7 @@ import { useNavigate,useParams } from "react-router-dom";
 import './ProfilePage.css';
 import { AppDispatch, RootState } from "../../redux/ReduxStore";
 import { fetchUser } from "../../redux/slices/AuthenticationSlice";
-import { ProfileLoanHistory, UpdateUserForm } from "../../features/profile";
+import { ProfileActivityLog, ProfileLoanHistory, UpdateUserForm } from "../../features/profile";
 
 export default function ProfilePage(){
     const loggedInUser = useSelector((state:RootState) => state.authentication.loggedInUser);
@@ -32,14 +32,18 @@ export default function ProfilePage(){
         <div className="page">
             <div className="page-container">
                 <h1>{profileUser?.firstName} {profileUser?.lastName}'s Profile</h1>
-                <div className="profile-page-cols">
-                    <div className="profile-page-left-column">
-                        <UpdateUserForm />
+                    <div className="profile-page-cols">
+                        <div className="profile-page-left-column">
+                            <UpdateUserForm />
+                        </div>
+                        <div className="profile-page-right-column">
+                            { profileUser && <ProfileLoanHistory/>}
+                        </div>
                     </div>
-                    <div className="profile-page-right-column">
-                        { profileUser && <ProfileLoanHistory/>}
+                    <div className="profile-page-activity">
+                        { <ProfileActivityLog/>  }
                     </div>
-                </div>
+                
             </div>
         </div>
     )

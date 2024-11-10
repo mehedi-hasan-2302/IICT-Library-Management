@@ -83,7 +83,7 @@ export const UpdateUserForm:React.FC = () => {
             </div>
             {displayUpdate ? <button className="profile-button" onClick={submitUpdatedUser}> Update Profile</button> : <></> } 
             {userState.loggedInUser?._id === userState.profileUser?._id ? <button className="profile-button"
-            onClick={logout}>Logout Of Account</button> : <></>}
+            onClick={logout}>Logout</button> : <></>}
 
         </form>
     )
