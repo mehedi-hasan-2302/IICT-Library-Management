@@ -4,30 +4,64 @@ import cors from 'cors';
 import {config} from './config';
 import { registerRoutes } from './routes';
 
-
 const PORT = config.server.port;
-
-const app:Express = express();
+const app: Express = express();
 
 app.use(express.json());
-app.use(cors());
- 
+app.use(cors({
+  origin: process.env.NODE_ENV === 'production' 
+    ? ['https://frontend-domain.vercel.app']
+    : ['http://localhost:3000', 'http://localhost:5173'],
+  credentials: true
+}));
 
-(async function startup(){
-    try{
+// Initialize database connection
+let isConnected = false;
 
-        await mongoose.connect(config.mongo.url, {w:"majority", retryWrites:true, authMechanism:"DEFAULT"});
+async function connectToDatabase() {
+  if (isConnected) return;
+  
+  try {
+    await mongoose.connect(config.mongo.url, {
+      w: "majority", 
+      retryWrites: true, 
+      authMechanism: "DEFAULT"
+    });
+    isConnected = true;
+    console.log("Connection to MongoDB successfully made");
+  } catch (error) {
+    console.log("Could not make a connection to the database!", error);
+    throw error;
+  }
+}
 
-        console.log("Connection to MongoDB successfully made");
-        registerRoutes(app);
-        
-        app.listen(PORT, () =>{
-            console.log(`Server is running on port ${PORT}`);
-        });
+// Register routes
+registerRoutes(app);
 
-    }catch(error){
-        console.log("could not make a connection to the database!");
+// Health check endpoint
+app.get('/api', (req: Request, res: Response) => {
+  res.json({ message: 'IICT Library Management API is running!' });
+});
+
+// For Vercel serverless functions
+export default async (req: Request, res: Response) => {
+  await connectToDatabase();
+  return app(req, res);
+};
+
+// For local development
+if (process.env.NODE_ENV !== 'production') {
+  (async function startup() {
+    try {
+      await connectToDatabase();
+      
+      app.listen(PORT, () => {
+        console.log(`Server is running on port ${PORT}`);
+      });
+    } catch (error) {
+      console.log("Could not start the server!", error);
     }
-})()
+  })();
+}
 
 
