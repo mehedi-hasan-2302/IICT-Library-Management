@@ -6,6 +6,7 @@ import './ProfileLoanHistory.css';
 import { RootState } from "../../../../redux/ReduxStore";
 import { LoanRecord } from "../../../../models/LoanRecord";
 import { ProfileLoanRecord } from "../ProfileLoanRecord/ProfileLoanRecord";
+import { API_ENDPOINTS } from "../../../../config/api";
 
 
 export const ProfileLoanHistory:React.FC = () => {
@@ -15,7 +16,7 @@ export const ProfileLoanHistory:React.FC = () => {
     const fetchRecordsForUser = async () => {
         if(user){
             try{
-                let res = await axios.post('http://localhost:8000/loan/query',{
+                let res = await axios.post(`${API_ENDPOINTS.LOAN}/query`,{
                     property: "student",
                     value: user._id
                 });

@@ -1,7 +1,5 @@
-import { useState ,useEffect} from 'react';
-import reactLogo from './assets/react.svg';
-import viteLogo from '/vite.svg';
-import { UseSelector, useDispatch, useSelector } from 'react-redux';
+import { useEffect} from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from './redux/ReduxStore';
 import HomePage from './pages/HomePage/HomePage';
 import { BrowserRouter,Route, Routes } from 'react-router-dom';
