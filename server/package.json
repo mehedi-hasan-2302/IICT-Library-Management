@@ -1,12 +1,11 @@
 {
   "name": "server",
   "version": "1.0.0",
-  "main": "server.js",
+  "main": "index.js",
   "scripts": {
-    "build": "rimraf dist && tsc",
-    "prestart": "npm run build",
-    "start": "node ./dist/server.js",
-    "predev": "npm run build",
+    "build": "tsc",
+    "vercel-build": "tsc",
+    "start": "node index.js",
     "dev": "concurrently \"tsc -w\" \"nodemon ./dist/server.js\""
   },
   "keywords": [],
