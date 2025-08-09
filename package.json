@@ -1,0 +1,17 @@
+{
+  "name": "iict-library-management",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "cd client/library-app && npm run build",
+    "install-client": "cd client/library-app && npm install",
+    "install-server": "cd server && npm install",
+    "install-all": "npm run install-client && npm run install-server",
+    "dev": "concurrently \"cd server && npm run dev\" \"cd client/library-app && npm run dev\"",
+    "start": "cd server && npm start"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^5.0.0",
+    "concurrently": "^8.2.2"
+  }
+}
