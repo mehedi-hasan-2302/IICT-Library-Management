@@ -7,6 +7,7 @@ import { PageInfo } from "../../models/Page";
 import { ListItem } from "@mui/material";
 import { act } from "react";
 import { LocalDining } from "@mui/icons-material";
+import { API_ENDPOINTS } from "../../config/api";
 
 interface BookSliceState {
     loading: boolean;
@@ -30,7 +31,7 @@ export const fetchAllBooks = createAsyncThunk(
     'book/all',
     async (payload, thunkAPI) => {
         try{
-            let req = await axios.get('http://localhost:8000/book/');
+            let req = await axios.get(API_ENDPOINTS.BOOK.BASE);
             return req.data.books;
         } catch(e){
             return thunkAPI.rejectWithValue(e);
@@ -43,7 +44,7 @@ export const queryBooks = createAsyncThunk(
     'book/query',
     async (payload:string, thunkAPI) => {
         try{
-            let req = await axios.get(`http://localhost:8000/book/query/${payload}`);
+            let req = await axios.get(`${API_ENDPOINTS.BOOK.QUERY}/${payload}`);
             return req.data.page;
         } catch(e){
             return thunkAPI.rejectWithValue(e);
@@ -58,7 +59,7 @@ export const checkoutBook = createAsyncThunk(
             const returnDate = new Date();
             returnDate.setDate(returnDate.getDate() + 14);
             
-            const getStudent = await axios.get(`http://localhost:8000/card/${payload.libraryCard}`);
+            const getStudent = await axios.get(`${API_ENDPOINTS.CARD}/${payload.libraryCard}`);
 
             let studentId = getStudent.data.libraryCard.user._id;
 
@@ -71,7 +72,7 @@ export const checkoutBook = createAsyncThunk(
                 item: payload.book._id
             }
 
-            const loadReq = await axios.post('http://localhost:8000/loan', record);
+            const loadReq = await axios.post(API_ENDPOINTS.LOAN, record);
             const loan = loadReq.data.record;
 
             return loan;
@@ -100,7 +101,7 @@ export const checkinBook = createAsyncThunk(
                 _id: record._id
             }
 
-            let loan = await axios.put('http://localhost:8000/loan/', updatedRecord);
+            let loan = await axios.put(`${API_ENDPOINTS.LOAN}/`, updatedRecord);
             return loan.data.record;
         } catch(e){
             return thunkAPI.rejectWithValue(e);
@@ -113,7 +114,7 @@ export const loadBookByBarcode = createAsyncThunk(
     'book/id',
     async (payload:string, thunkAPI) => {
         try{
-            let res = await axios.get(`http://localhost:8000/book/query?barcode=${payload}`);
+            let res = await axios.get(`${API_ENDPOINTS.BOOK.QUERY}?barcode=${payload}`);
             let book = res.data.page.items[0];
 
             if(!book || book.barcode !== payload){

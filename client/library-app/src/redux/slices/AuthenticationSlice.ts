@@ -3,6 +3,7 @@ import { FetchUserPayload, LoginUserPayload, RegisterUserPayload, User } from ".
 
 import axios from "axios";
 import { BuildCircle, TrendingUpOutlined } from "@mui/icons-material";
+import { API_ENDPOINTS } from "../../config/api";
 
 interface AuthenticationSliceState{
     loggedInUser: User | undefined;
@@ -26,7 +27,7 @@ export const loginUser = createAsyncThunk(
     'auth/login',
     async (user:LoginUserPayload, thunkAPI) => {
         try{
-            const req = await axios.post('http://localhost:8000/auth/login',user);
+            const req = await axios.post(API_ENDPOINTS.AUTH.LOGIN, user);
             return req.data.user;
         } catch(e : any){
             const errorPayload = {
@@ -44,7 +45,7 @@ export const registerUser = createAsyncThunk(
     'auth/register',
     async(user: RegisterUserPayload, thunkAPI) => {
         try{
-            const req = await axios.post('http://localhost:8000/auth/register',user);
+            const req = await axios.post(API_ENDPOINTS.AUTH.REGISTER, user);
             return req.data.user;
         } catch(e){
             return thunkAPI.rejectWithValue(e);
@@ -56,7 +57,7 @@ export const fetchUser = createAsyncThunk(
     'auth/fetch',
     async (payload: FetchUserPayload, thunkAPI) => {
         try{
-            const req = await axios.get(`http://localhost:8000/users/${payload.userId}`);
+            const req = await axios.get(`${API_ENDPOINTS.USERS}/${payload.userId}`);
             const user = req.data.user;
             
             return{
@@ -73,7 +74,7 @@ export const updateUser = createAsyncThunk(
     'auth/update',
     async (payload:User, thunkAPI) => {
         try{
-            const req = await axios.put('http://localhost:8000/users', payload);
+            const req = await axios.put(API_ENDPOINTS.USERS, payload);
             return req.data.user;
         } catch(e){
             return thunkAPI.rejectWithValue(e);
@@ -85,7 +86,7 @@ export const getLibraryCard = createAsyncThunk(
     'auth/librarycard',
     async(userId:string, thunkAPI)=> {
         try{
-            const req = await axios.post('http://localhost:8000/card/', {user:userId});
+            const req = await axios.post(`${API_ENDPOINTS.CARD}/`, {user:userId});
             return req.data.libraryCard;
         } catch(e){
             return thunkAPI.rejectWithValue(e);
@@ -114,7 +115,7 @@ export const AuthenticationSlice = createSlice({
     },
     extraReducers: (builder) => {
         //pending logic 
-        builder.addCase(loginUser.pending, (state, action) => {
+        builder.addCase(loginUser.pending, (state ) => {
             state = {
                 ...state,
                 error: false,
